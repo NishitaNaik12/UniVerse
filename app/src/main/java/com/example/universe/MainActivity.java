@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth= FirebaseAuth.getInstance();
 
-
-
         Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
 
             }
-        },2000);
+        },3000);
     }
 
     @Override

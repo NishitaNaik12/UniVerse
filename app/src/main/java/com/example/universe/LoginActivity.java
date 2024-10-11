@@ -27,8 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView signUpLink;
-
     private Button LogonButton;
     private EditText UserEmail, UserPassword;
     private TextView newAccLink;
@@ -73,9 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser currentUser= mAuth.getCurrentUser();
 
         if(currentUser!=null){
-            SendUserToMainActivity();
+            SendUserToHomeActivity();
         }
     }
+
+
     private void AllowUserToLogin() {
         String email = UserEmail.getText().toString();
         String password = UserPassword.getText().toString();
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        SendUserToMainActivity();
+                        SendUserToHomeActivity();
                         Toast.makeText(LoginActivity.this, "you r logged in succefully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                     }else{
@@ -108,10 +108,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void SendUserToMainActivity() {
-        Intent mainIntent =new Intent(LoginActivity.this,HomeActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
+    private void SendUserToHomeActivity() {
+        Intent homeIntent =new Intent(LoginActivity.this,HomeActivity.class);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(homeIntent);
         finish();
     }
 
