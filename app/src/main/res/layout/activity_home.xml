@@ -30,6 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:itemIconTint="@drawable/selected_items"
+        app:itemTextColor="@drawable/selected_items"
         app:itemBackground="@color/grey"
         app:layout_constraintBottom_toBottomOf="@+id/postsRecyclerView"
         app:menu="@menu/menu" />

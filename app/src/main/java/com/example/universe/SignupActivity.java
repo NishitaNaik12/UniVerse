@@ -121,7 +121,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void SendUserToSetupActivity() {
 
-        Intent setupIntent = new Intent(SignupActivity.this,HomeActivity.class);
+        Intent setupIntent = new Intent(SignupActivity.this,SetupActivity.class);
         setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(setupIntent);
         finish();
