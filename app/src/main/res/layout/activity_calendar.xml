@@ -25,7 +25,9 @@
                 android:id="@+id/simpleCalendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp" />
+                android:layout_marginTop="60dp"
+                android:backgroundTint="@color/lightestgreen"
+                android:selectedWeekBackgroundColor="@color/slightlydarkergreen" />
 
             <Button
                 android:id="@+id/addEventButton"
@@ -33,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/simpleCalendarView"
                 android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/lesserdarkgreen"
                 android:text="Add Event" />
 
             <!-- Event Display (you can use a RecyclerView or TextViews) -->
@@ -52,7 +55,7 @@
         android:id="@+id/bn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/grey"
+        app:itemBackground="@color/lightgreen"
         app:itemIconTint="@drawable/selected_items"
         app:itemTextColor="@drawable/selected_items"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:background="@color/lightestgreen">
 
     <!-- Logo -->
 
@@ -18,8 +18,9 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your University \n Your Universe"
-        android:textSize="25sp"
         android:layout_below="@id/logoImageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/alegreya_medium"
+        android:text="Your University \n Your Universe"
+        android:textSize="25sp" />
 </RelativeLayout>
