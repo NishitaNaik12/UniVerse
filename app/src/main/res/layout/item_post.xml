@@ -12,7 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/lightestgreen"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -24,50 +26,56 @@
                 android:layout_height="48dp"
                 android:src="@drawable/logo"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                 />
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/lightgreen"
+                android:backgroundTint="@color/lightestgreen"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/usernameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/alegreya_medium"
                     android:text="Rida Peterson"
-                    app:layout_constraintStart_toEndOf="@id/userImageView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintStart_toEndOf="@id/userImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/timestampTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5th-March-2018 12:58"
-                    app:layout_constraintStart_toEndOf="@id/userImageView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/usernameTextView"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginTop="4dp" />
+                    android:fontFamily="@font/alegreya_medium"
+                    android:text="5th-March-2018 12:58"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/userImageView"
+                    app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
             </LinearLayout>
 
 
-
         </LinearLayout>
+
         <ImageView
             android:id="@+id/postImageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
             android:src="@drawable/logo"
-            app:layout_constraintTop_toBottomOf="@id/timestampTextView"
-            android:scaleType="centerCrop" />
+            app:layout_constraintTop_toBottomOf="@id/timestampTextView" />
+
         <TextView
             android:id="@+id/postCaptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
+            android:fontFamily="@font/alegreya_medium"
             android:text="hello everyone, I am new to UniVerse."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

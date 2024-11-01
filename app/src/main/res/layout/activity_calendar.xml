@@ -25,7 +25,9 @@
                 android:id="@+id/simpleCalendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp" />
+                android:layout_marginTop="60dp"
+                android:backgroundTint="@color/lightestgreen"
+                android:selectedWeekBackgroundColor="@color/slightlydarkergreen" />
 
             <Button
                 android:id="@+id/addEventButton"
@@ -33,8 +35,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/simpleCalendarView"
                 android:layout_centerHorizontal="true"
+<<<<<<< HEAD
                 android:text="Add Event"
                 android:layout_marginTop="20dp"/>
+=======
+                android:backgroundTint="@color/lesserdarkgreen"
+                android:text="Add Event" />
+>>>>>>> 365172a72f8c244ba20496c6d8ec2cae850db1b1
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,7 +79,7 @@
         android:id="@+id/bn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/grey"
+        app:itemBackground="@color/lightgreen"
         app:itemIconTint="@drawable/selected_items"
         app:itemTextColor="@drawable/selected_items"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:background="@color/lightestgreen">
 
     <!-- Logo -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="150dp"
         android:layout_height="200dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Email Address -->
     <EditText
@@ -24,6 +23,7 @@
         android:layout_width="373dp"
         android:layout_height="61dp"
         android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/alegreya_medium"
         android:hint="Enter your university email-id"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +36,7 @@
         android:layout_width="390dp"
         android:layout_height="58dp"
         android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/alegreya_medium"
         android:hint="Create Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +49,7 @@
         android:layout_width="378dp"
         android:layout_height="60dp"
         android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/alegreya_medium"
         android:hint="Re-enter Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,32 +61,36 @@
         android:id="@+id/signupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reenterPasswordEditText"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/lesserdarkgreen"
+        android:fontFamily="@font/alegreya_medium"
+        android:text="Sign Up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reenterPasswordEditText" />
 
     <TextView
         android:id="@+id/orDivider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/alegreya_medium"
         android:text="OR"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signupButton"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signupButton" />
 
 
     <TextView
         android:id="@+id/logInLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/alegreya_medium"
         android:text="Already have an account? Login!"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/orDivider"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/orDivider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

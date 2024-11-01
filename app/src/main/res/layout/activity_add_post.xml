@@ -21,14 +21,16 @@
         android:hint="Write a post" />
 
     <!-- Button to select an image -->
+
+    <!-- ImageView to display selected image -->
     <Button
         android:id="@+id/selectImageButton"
         android:layout_width="163dp"
         android:layout_height="69dp"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/lesserdarkgreen"
         android:text="Select Image" />
 
-    <!-- ImageView to display selected image -->
     <ImageView
         android:id="@+id/selectedImageView"
         android:layout_width="match_parent"
@@ -43,5 +45,6 @@
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/lesserdarkgreen"
         android:text="Post" />
 </LinearLayout>

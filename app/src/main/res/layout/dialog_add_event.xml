@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:padding="16dp">
 
     <!-- Event Name -->
@@ -11,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Event Name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/dialog_event_image"
@@ -29,26 +30,33 @@
         android:id="@+id/input_event_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="Enter event name"
         android:padding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/label_event_name"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Enter event name" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_event_name" />
 
     <!-- Event Date -->
     <TextView
         android:id="@+id/label_event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Event Date"
+<<<<<<< HEAD
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/input_event_name"
         app:layout_constraintStart_toStartOf="parent" />
+=======
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_event_name" />
+>>>>>>> 365172a72f8c244ba20496c6d8ec2cae850db1b1
 
     <DatePicker
         android:id="@+id/input_event_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@id/label_event_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -62,6 +70,14 @@
         android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/input_event_date"
         app:layout_constraintStart_toStartOf="parent" />
+=======
+        android:background="@color/lightestgreen"
+        android:backgroundTint="@color/lightestgreen"
+        android:dayOfWeekBackground="@color/lightgreen"
+        android:headerBackground="@color/darkestgreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label_event_date" />
+>>>>>>> 365172a72f8c244ba20496c6d8ec2cae850db1b1
 
     <TimePicker
         android:id="@+id/input_event_time"
@@ -94,10 +110,18 @@
         android:id="@+id/button_save_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/lesserdarkgreen"
         android:text="Save Event"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/input_event_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="2dp" />
+=======
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_event_date" />
+>>>>>>> 365172a72f8c244ba20496c6d8ec2cae850db1b1
 
 </androidx.constraintlayout.widget.ConstraintLayout>
