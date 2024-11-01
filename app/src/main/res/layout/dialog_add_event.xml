@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
+    <!-- Event Name -->
     <TextView
         android:id="@+id/label_event_name"
         android:layout_width="wrap_content"
@@ -12,6 +13,17 @@
         android:text="Event Name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/dialog_event_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/input_event_date"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="Selected Event Image" />
+
 
     <EditText
         android:id="@+id/input_event_name"
@@ -23,30 +35,69 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="Enter event name" />
 
+    <!-- Event Date -->
     <TextView
         android:id="@+id/label_event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Event Date"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/input_event_name"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <DatePicker
         android:id="@+id/input_event_date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/label_event_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Event Time -->
+    <TextView
+        android:id="@+id/label_event_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Time"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/input_event_date"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TimePicker
+        android:id="@+id/input_event_time"
+        android:layout_width="220dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="1dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintTop_toBottomOf="@id/label_event_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Select Image Button -->
+    <Button
+        android:id="@+id/selectImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="Select Image"
+        android:textSize="2sp"
+
+        app:layout_constraintTop_toBottomOf="@+id/input_event_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/input_event_time"
+        android:background="@drawable/square_button_background"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="8dp"/>
+
+    <!-- Save Event Button -->
     <Button
         android:id="@+id/button_save_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Event"
-        app:layout_constraintTop_toBottomOf="@id/input_event_date"
+        app:layout_constraintTop_toBottomOf="@+id/input_event_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

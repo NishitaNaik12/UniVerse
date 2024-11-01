@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#BDBDBD</color>
     <color name="grey2">#7B7878</color>
+    <color name="holo_blue_light">#FF6200EE</color> <!-- Use a specific hex code for your color -->
+
 </resources>
