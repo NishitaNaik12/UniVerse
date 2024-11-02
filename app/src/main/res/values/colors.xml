@@ -4,20 +4,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#BDBDBD</color>
     <color name="grey2">#7B7878</color>
-<<<<<<< HEAD
     <color name="holo_blue_light">#FF6200EE</color> <!-- Use a specific hex code for your color -->
 
-</resources>
-=======
+
     <color name="darkestgreen">#051F20</color>
     <color name="darkgreen">#0B2B26</color>
     <color name="slightlydarkergreen">#163832</color>
     <color name="lesserdarkgreen">#235347</color>
     <color name="lightgreen">#8EB69B</color>
     <color name="lightestgreen">#DAF1DE</color>
+    <color name="golden">#FFD700</color>
 
 </resources>
 
-
-
->>>>>>> 365172a72f8c244ba20496c6d8ec2cae850db1b1

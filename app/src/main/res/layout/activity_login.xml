@@ -20,11 +20,14 @@
     <!-- Email Address -->
     <EditText
         android:id="@+id/loginemail"
-        android:layout_width="369dp"
+        android:layout_width="0dp"
         android:layout_height="61dp"
         android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/alegreya_medium"
         android:hint="Enter your university email-id"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rounded_edittext_border"
+        android:padding="10dp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +36,17 @@
     <!-- Password -->
     <EditText
         android:id="@+id/liginpasswd"
-        android:layout_width="378dp"
+        android:layout_width="0dp"
         android:layout_height="61dp"
         android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/alegreya_medium"
         android:hint="Password"
+        android:layout_marginTop="4dp"
+        android:padding="10dp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/rounded_edittext_border"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginemail" />
 
@@ -53,6 +60,7 @@
         android:backgroundTint="@color/lesserdarkgreen"
         android:fontFamily="@font/alegreya_medium"
         android:text="Log In"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/liginpasswd" />
@@ -65,6 +73,8 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/alegreya_medium"
         android:text="OR"
+        android:textColor="@color/golden"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
@@ -79,6 +89,8 @@
         android:text="Don't have an account? Sign up."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/lesserdarkgreen"
+
         app:layout_constraintTop_toBottomOf="@id/orDivider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

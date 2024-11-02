@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         postRecyclerView.setLayoutManager(layoutManager);
 
         postList = new ArrayList<>();
-        postsAdapter = new PostAdapter(postList);
+        postsAdapter = new PostAdapter(postList, true);
         postRecyclerView.setAdapter(postsAdapter);
 
         postsRef = FirebaseDatabase.getInstance().getReference().child("posts");
@@ -84,7 +82,16 @@ public class HomeActivity extends AppCompatActivity {
 
 
         bottomNavigationView = findViewById(R.id.bn);
-
+        View profileIcon = bottomNavigationView.findViewById(R.id.b_profile);
+        if (profileIcon != null) {
+            profileIcon.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    showLogoutMenu(v);
+                    return true; // Indicate the long click was handled
+                }
+            });
+        }
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -110,7 +117,28 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void showLogoutMenu(View anchor) {
+        PopupMenu popupMenu = new PopupMenu(this, anchor);
+        popupMenu.getMenuInflater().inflate(R.menu.logout_menu, popupMenu.getMenu());
 
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.action_logout) {
+                    logout();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    private void logout() {
+        mAuth.signOut();
+        SendUserToLoginActivity();
+    }
 
     private void loadPosts() {
         postsRef.addValueEventListener(new ValueEventListener() {

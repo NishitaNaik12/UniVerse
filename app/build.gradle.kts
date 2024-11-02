@@ -49,4 +49,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.github.bumptech.glide:glide:4.15.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.0")
 }

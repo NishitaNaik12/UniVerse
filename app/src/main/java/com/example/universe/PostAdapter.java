@@ -23,8 +23,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private List<Post> postList;
     private DatabaseReference usersRef;
+    private boolean isGridView;
+    private static final int VIEW_TYPE_POST = 0;
+    private static final int VIEW_TYPE_POST_GRID = 1;
 
-    public PostAdapter(List<Post> postList) {
+    public PostAdapter(List<Post> postList, boolean b) {
         this.postList = postList;
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
     }
@@ -32,8 +35,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
+        View view;
+        if (viewType == VIEW_TYPE_POST_GRID) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_grid, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
+        }
         return new ViewHolder(view);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (isGridView) {
+            return VIEW_TYPE_POST_GRID;
+        } else {
+            return VIEW_TYPE_POST;
+        }
+
     }
 
     @Override
