@@ -105,6 +105,7 @@ public class AddPostActivity extends AppCompatActivity {
         long timestamp = System.currentTimeMillis();
 
         Map<String, Object> postMap = new HashMap<>();
+        postMap.put("postId",postId);
         postMap.put("userId", userId);
         postMap.put("imageUrl", imageUrl);
         postMap.put("caption", caption);

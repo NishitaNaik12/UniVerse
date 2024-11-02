@@ -10,10 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -95,6 +98,78 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
 
         });
+
+
+        holder.likeCounts.setText(String.valueOf(post.getLikeCount()));
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        if (post.getLikes() != null && post.getLikes().containsKey(currentUserId)) {
+            holder.like.setImageResource(R.drawable.like_blue); // Liked state
+        } else {
+            holder.like.setImageResource(R.drawable.like_white); // Not liked
+        }
+
+        holder.like.setOnClickListener(view -> {
+
+            DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("posts").child(post.getPostId());
+
+            postRef.runTransaction(new Transaction.Handler() {
+                @Override
+                public Transaction.Result doTransaction(MutableData mutableData) {
+                    Post p = mutableData.getValue(Post.class);
+                    if (p == null) {
+                        return Transaction.success(mutableData);
+                    }
+
+                    if (p.getLikes().containsKey(currentUserId)) {
+                        // User already liked, so unlike
+                        p.setLikeCount(p.getLikeCount() - 1);
+                        p.getLikes().remove(currentUserId);
+                    } else {
+                        // User hasn't liked, so add like
+                        p.setLikeCount(p.getLikeCount() + 1);
+                        p.getLikes().put(currentUserId, true);
+                    }
+
+                    // Set value and report transaction success
+                    mutableData.setValue(p);
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
+                    if (committed) {
+                        // Update UI based on new like state
+                        if (dataSnapshot.child("likes").hasChild(currentUserId)) {
+                            holder.like.setImageResource(R.drawable.like_blue);
+                        } else {
+                            holder.like.setImageResource(R.drawable.like_white);
+                        }
+                        holder.likeCounts.setText(String.valueOf(dataSnapshot.child("likeCount").getValue(Integer.class)));
+                    }
+                }
+            });
+        });
+        DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("posts").child(post.getPostId());
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Post updatedPost = dataSnapshot.getValue(Post.class);
+                if (updatedPost != null) {
+                    holder.likeCounts.setText(String.valueOf(updatedPost.getLikeCount()));
+                    if (updatedPost.getLikes().containsKey(currentUserId)) {
+                        holder.like.setImageResource(R.drawable.like_blue);
+                    } else {
+                        holder.like.setImageResource(R.drawable.like_white);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        });
     }
 
     @Override
@@ -107,6 +182,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView captionTextView, timestampTextView;
         public ImageView postImageView;
         public TextView userNameTextView;
+        ImageView like;
+        TextView likeCounts;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -116,6 +193,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             timestampTextView = itemView.findViewById(R.id.timestampTextView);
             postImageView = itemView.findViewById(R.id.postImageView);
             userNameTextView = itemView.findViewById(R.id.usernameTextView);
+            likeCounts = itemView.findViewById(R.id.likeCount);
+            like = itemView.findViewById(R.id.like);
         }
     }
 

@@ -1,11 +1,17 @@
 package com.example.universe;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Post {
+    private String postId;
     private String userId;
     private String content; // For text posts
     private String imageUrl; // For image posts
     private String caption;  // For image captions
     private long timestamp;
+    private int likeCount;
+    private Map<String, Boolean> likes = new HashMap<>();
 
     public Post() {
         // Required for Firebase
@@ -37,6 +43,30 @@ public class Post {
 
     public long getTimestamp() {
         return timestamp;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public Map<String, Boolean> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Map<String, Boolean> likes) {
+        this.likes = likes;
     }
 }
 
