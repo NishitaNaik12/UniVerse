@@ -12,58 +12,7 @@
         android:id="@+id/main_app_bar">
     </include>
 
-<<<<<<< HEAD
     <LinearLayout
-=======
-
-
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="59dp"
-        android:layout_height="65dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_back" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/setupProfileImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/profile_icon" />
-
-    <EditText
-        android:id="@+id/setupUsername"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="237dp"
-        android:fontFamily="@font/alegreya_medium"
-        android:hint="userame:" />
-
-    <EditText
-        android:id="@+id/setupFullName"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="336dp"
-        android:fontFamily="@font/alegreya_medium"
-        android:hint="Fullname:" />
-
-    <EditText
-        android:id="@+id/setupCountry"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="434dp"
-        android:fontFamily="@font/alegreya_medium"
-        android:hint="Department" />
-
-    <Button
-        android:id="@+id/setupSaveButton"
->>>>>>> f2717245437e98f566a7398bb03867ca36c8183c
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -87,18 +36,28 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/alegreya_medium"
+                android:hint="email Id" />
+
 
             <EditText
                 android:id="@+id/setupUsername"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 android:fontFamily="@font/alegreya_medium"
                 android:hint="userame:" />
 
             <EditText
                 android:id="@+id/setupFullName"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:fontFamily="@font/alegreya_medium"
                 android:hint="Fullname:" />
@@ -106,19 +65,19 @@
             <EditText
                 android:id="@+id/setupDepartment"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textColor="@color/black"
+                android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:fontFamily="@font/alegreya_medium"
-                android:hint="Department" />
+                android:hint="Department:"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/setupStatus"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:fontFamily="@font/alegreya_medium"
-                android:hint="Status" />
+                android:hint="Status:" />
 
             <Button
                 android:id="@+id/setupSaveButton"
