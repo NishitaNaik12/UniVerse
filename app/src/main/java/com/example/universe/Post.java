@@ -12,7 +12,7 @@ public class Post {
     private long timestamp;
     private int likeCount;
     private Map<String, Boolean> likes = new HashMap<>();
-
+    private String userImageUrl;
     public Post() {
         // Required for Firebase
     }
@@ -23,6 +23,7 @@ public class Post {
         this.imageUrl = imageUrl;
         this.caption = caption;
         this.timestamp = timestamp;
+        this.userImageUrl = userImageUrl;
     }
 
     public String getUserId() {
@@ -63,6 +64,13 @@ public class Post {
 
     public Map<String, Boolean> getLikes() {
         return likes;
+    }
+    public String getUserImageUrl() { // Add this method
+        return userImageUrl;
+    }
+
+    public void setUserImageUrl(String userImageUrl) { // Add this method
+        this.userImageUrl = userImageUrl;
     }
 
     public void setLikes(Map<String, Boolean> likes) {

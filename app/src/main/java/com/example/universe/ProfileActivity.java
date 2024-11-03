@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -42,7 +46,10 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView StatusText;
     private DatabaseReference usersRef;
     private TextView editProfileText;
-
+    //
+    private String currentUserID;
+    private CircleImageView profileImage;
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +64,15 @@ public class ProfileActivity extends AppCompatActivity {
         postList = new ArrayList<>();
         postAdapter = new PostAdapter(postList, true);
         recyclerViewPosts.setAdapter(postAdapter);
+        profileImage = findViewById(R.id.profileImage);
 
         mAuth = FirebaseAuth.getInstance();
         postsRef = FirebaseDatabase.getInstance().getReference().child("posts");
         String currentUserId = mAuth.getCurrentUser().getUid();
         usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+        //
+        loadUserProfile();
+        //
         bottomNavigationView = findViewById(R.id.bn);
         View profileIcon = bottomNavigationView.findViewById(R.id.b_profile);
         if (profileIcon != null) {
@@ -193,4 +204,42 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth.signOut();
         SendUserToLoginActivity();
     }
+    //
+    private void loadUserProfile() {
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Load username and department
+                    String username = dataSnapshot.child("username").getValue(String.class);
+                    String department = dataSnapshot.child("department").getValue(String.class);
+                    String profileImageUrl = dataSnapshot.child("profileImage").getValue(String.class); // Retrieve image URL
+
+                    userNameTextView.setText(username);
+                    userDepartmentTextView.setText(department);
+                    // Load status text if it exists (optional)
+                    String status = dataSnapshot.child("status").getValue(String.class);
+                    if (status != null) {
+                        StatusText.setText(status);
+                    }
+
+                    // Load profile image using Glide
+                    if (profileImageUrl != null) {
+                        Glide.with(ProfileActivity.this)
+                                .load(profileImageUrl)
+                                .into(profileImage);
+                    } else {
+                        // Optionally set a default image if no image URL is found
+                        profileImage.setImageResource(R.drawable.profile_icon); // Your default image
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle possible errors
+            }
+        });
+    }
+    //
 }

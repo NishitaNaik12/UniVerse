@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private List<Post> postList;
@@ -29,6 +31,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private boolean isGridView;
     private static final int VIEW_TYPE_POST = 0;
     private static final int VIEW_TYPE_POST_GRID = 1;
+
 
     public PostAdapter(List<Post> postList, boolean b) {
         this.postList = postList;
@@ -88,7 +91,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String userName = snapshot.child("fullname").getValue(String.class);
+                    //
+                    String userImageUrl = snapshot.child("profileImage").getValue(String.class);
+                    //
                     holder.userNameTextView.setText(userName);  // Set user's name to the TextView
+                    //
+                    Glide.with(holder.itemView.getContext())
+                            .load(userImageUrl) // Assuming you have a field "profileImage" in your user node
+                            .into(holder.userImageView);
+                    //
                 }
             }
 
@@ -184,11 +195,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView userNameTextView;
         ImageView like;
         TextView likeCounts;
+        public CircleImageView userImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             //contentTextView = itemView.findViewById(R.id.contentTextView);
-
+            userImageView = itemView.findViewById(R.id.userImageView);
             captionTextView = itemView.findViewById(R.id.postCaptionTextView);
             timestampTextView = itemView.findViewById(R.id.timestampTextView);
             postImageView = itemView.findViewById(R.id.postImageView);

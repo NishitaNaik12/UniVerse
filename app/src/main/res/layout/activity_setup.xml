@@ -6,64 +6,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightestgreen"
-    tools:context=".SetupActivity">
+    tools:context=".SetupActivity"
+    android:fitsSystemWindows="true">
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/main_app_bar">
+    </include>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
 
-
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="59dp"
-        android:layout_height="65dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_back" />
+    <RelativeLayout
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:layout_centerHorizontal="true">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setupProfileImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/profile_icon" />
 
-    <EditText
-        android:id="@+id/setupUsername"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="237dp"
-        android:fontFamily="@font/alegreya_medium"
-        android:hint="userame:" />
+    <!-- Edit Icon in Bottom Right Corner -->
+    <ImageView
+        android:id="@+id/editProfileIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignBottom="@id/setupProfileImage"
+        android:layout_alignEnd="@id/setupProfileImage"
+        android:src="@drawable/baseline_edit_24"
 
-    <EditText
-        android:id="@+id/setupFullName"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="336dp"
-        android:fontFamily="@font/alegreya_medium"
-        android:hint="Fullname:" />
+    android:padding="5dp" />
+</RelativeLayout>
 
-    <EditText
-        android:id="@+id/setupCountry"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="434dp"
-        android:fontFamily="@font/alegreya_medium"
-        android:hint="Department" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_btn"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-    <Button
-        android:id="@+id/setupSaveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="548dp"
-        android:backgroundTint="@color/lesserdarkgreen"
-        android:fontFamily="@font/alegreya_medium"
-        android:text="SAVE" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/alegreya_medium"
+                android:hint="email Id" />
+
+
+            <EditText
+                android:id="@+id/setupUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/alegreya_medium"
+                android:hint="userame:" />
+
+            <EditText
+                android:id="@+id/setupFullName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:fontFamily="@font/alegreya_medium"
+                android:hint="Fullname:" />
+
+            <EditText
+                android:id="@+id/setupDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:fontFamily="@font/alegreya_medium"
+                android:hint="Department:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/setupStatus"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:fontFamily="@font/alegreya_medium"
+                android:hint="Status:" />
+
+            <Button
+                android:id="@+id/setupSaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/lesserdarkgreen"
+                android:fontFamily="@font/alegreya_medium"
+                android:text="SAVE" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
