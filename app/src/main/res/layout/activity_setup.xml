@@ -8,6 +8,18 @@
     android:background="@color/lightestgreen"
     tools:context=".SetupActivity">
 
+
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="59dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_back" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setupProfileImage"
         android:layout_width="200dp"

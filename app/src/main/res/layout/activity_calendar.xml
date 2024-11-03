@@ -7,19 +7,10 @@
     tools:context=".CalendarActivity">
 
     <include
-        layout="@layout/app_bar" />
-
-    <!-- Add ScrollView here -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        layout="@layout/app_bar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bn">
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
             <CalendarView
                 android:id="@+id/simpleCalendarView"
@@ -27,7 +18,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:backgroundTint="@color/lightestgreen"
-                android:selectedWeekBackgroundColor="@color/slightlydarkergreen" />
+                android:selectedWeekBackgroundColor="@color/slightlydarkergreen"
+                app:layout_constraintTop_toBottomOf="@id/main_app_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <Button
                 android:id="@+id/addEventButton"
@@ -35,21 +29,37 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/simpleCalendarView"
                 android:layout_centerHorizontal="true"
-
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/lesserdarkgreen"
-                android:text="Add Event" />
+                android:text="Add Event"
+                app:layout_constraintTop_toBottomOf="@id/simpleCalendarView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/addEventButton"
+        app:layout_constraintBottom_toTopOf="@id/bn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
+        <LinearLayout
+            android:id="@+id/eventsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_below="@id/addEventButton"
-                android:layout_marginTop="10dp"
-                android:padding="16dp">
-
+                android:layout_marginBottom="10dp"
+                android:padding="8dp"
+                android:background="@drawable/event_background">
                 <ImageView
                     android:id="@+id/eventImageView"
                     android:layout_width="50dp"
@@ -69,7 +79,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
     <!-- Bottom Navigation -->

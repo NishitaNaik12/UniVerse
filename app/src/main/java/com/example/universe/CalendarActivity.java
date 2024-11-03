@@ -48,6 +48,7 @@ public class CalendarActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar);
 
+
         // Initialize Firebase references
         databaseReference = FirebaseDatabase.getInstance().getReference("events");
         storageReference = FirebaseStorage.getInstance().getReference("event_images");

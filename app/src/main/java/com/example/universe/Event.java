@@ -1,18 +1,22 @@
 package com.example.universe;
 
+import java.util.UUID;
+
 public class Event {
     private String name;
     private String id;
     private String date;
     private String imageUrl;
 
-    public Event() { } // Needed for Firebase
+    public Event() {
+        this.id = UUID.randomUUID().toString();
+    } // Needed for Firebase
 
     public Event(String name, String date, String imageUrl) {
         this.name = name;
         this.date = date;
         this.imageUrl = imageUrl;
-        this.id = id;
+        this.id = UUID.randomUUID().toString();;
     }
     public String getId() {
         return id;
