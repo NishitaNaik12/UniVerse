@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -35,13 +37,17 @@ public class ProfileActivity extends AppCompatActivity {
     private PostAdapter postAdapter;
     private List<Post> postList;
     private DatabaseReference postsRef;
+    private TextView userNameTextView;
+    private TextView userDepartmentTextView;
+    private DatabaseReference usersRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
-
+        userNameTextView = findViewById(R.id.userName);
+        userDepartmentTextView = findViewById(R.id.userDepartment);
         recyclerViewPosts = findViewById(R.id.recyclerViewPosts);
         recyclerViewPosts.setLayoutManager(new GridLayoutManager(this, 2)); // Set grid layout with 3 columns
 
@@ -51,6 +57,42 @@ public class ProfileActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         postsRef = FirebaseDatabase.getInstance().getReference().child("posts");
+        String currentUserId = mAuth.getCurrentUser().getUid();
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+        bottomNavigationView = findViewById(R.id.bn);
+        View profileIcon = bottomNavigationView.findViewById(R.id.b_profile);
+        if (profileIcon != null) {
+            profileIcon.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    showLogoutMenu(v);
+                    return true; // Indicate the long click was handled
+                }
+            });
+        }
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(mAuth.getCurrentUser().getUid());
+
+        // Fetch user profile info
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String fullname = snapshot.child("fullname").getValue(String.class);
+                    String department = snapshot.child("department").getValue(String.class);
+
+                    // Set these values to TextViews
+                    if (fullname != null) userNameTextView.setText(fullname);
+                    if (department != null) userDepartmentTextView.setText(department);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle potential errors
+            }
+        });
 
         loadUserPosts();
 
@@ -114,5 +156,27 @@ public class ProfileActivity extends AppCompatActivity {
                 // Handle potential errors here
             }
         });
+    }
+    private void showLogoutMenu(View anchor) {
+        PopupMenu popupMenu = new PopupMenu(this, anchor);
+        popupMenu.getMenuInflater().inflate(R.menu.logout_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.action_logout) {
+                    logout();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    private void logout() {
+        mAuth.signOut();
+        SendUserToLoginActivity();
     }
 }
