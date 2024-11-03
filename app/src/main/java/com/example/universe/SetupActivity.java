@@ -30,10 +30,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SetupActivity extends AppCompatActivity {
 
-    private EditText UserName, FullName, Country;
+    private EditText UserName, FullName, Department, Status, email;
     private Button saveButton;
     private CircleImageView profileImage;
-
+    private ImageView addapostIcon;
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     private ImageView backButton;
@@ -52,19 +52,15 @@ public class SetupActivity extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef= FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
 
+        email = findViewById(R.id.email);
+        String em = mAuth.getCurrentUser().getEmail();
+        email.setText(em);
         UserName = (EditText) findViewById(R.id.setupUsername);
         FullName = (EditText) findViewById(R.id.setupFullName);
-        Country = (EditText) findViewById(R.id.setupCountry);
+        Department = (EditText) findViewById(R.id.setupDepartment);
         saveButton=(Button) findViewById(R.id.setupSaveButton);
+        Status = (EditText)findViewById(R.id.setupStatus);
         profileImage=(CircleImageView) findViewById(R.id.setupProfileImage);
-        backButton=(ImageView) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SetupActivity.this,SignupActivity.class);
-                startActivity(intent);
-            }
-        });
 
         loadingBar=new ProgressDialog(this);
 
@@ -84,7 +80,8 @@ public class SetupActivity extends AppCompatActivity {
     private void SaveAccountSetupInfo() {
         String username = UserName.getText().toString();
         String fullname = FullName.getText().toString();
-        String country = Country.getText().toString();
+        String department = Department.getText().toString();
+        String status = Status.getText().toString();
 
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, "enter username", Toast.LENGTH_SHORT).show();
@@ -92,9 +89,12 @@ public class SetupActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(fullname)) {
             Toast.makeText(this, "Enter full name", Toast.LENGTH_SHORT).show();
         }
-        if (TextUtils.isEmpty(country)) {
+        if (TextUtils.isEmpty(department)) {
             Toast.makeText(this, "Enter country", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if (TextUtils.isEmpty(status)) {
+            Toast.makeText(this, "Enter Status ", Toast.LENGTH_SHORT).show();
+        }else {
             loadingBar.setTitle("Saving Info");
             loadingBar.setMessage("wait");
             loadingBar.show();
@@ -104,8 +104,8 @@ public class SetupActivity extends AppCompatActivity {
             HashMap userMap = new HashMap();
             userMap.put("username", username);
             userMap.put("fullname", fullname);
-            userMap.put("country", country);
-            userMap.put("status", "hey there im using universe");
+            userMap.put("department", department);
+            userMap.put("status", status);
             userMap.put("gender", "none");
             userMap.put("dob", "none");
             userMap.put("relationshipStatus", "none");

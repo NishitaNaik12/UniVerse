@@ -39,7 +39,9 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference postsRef;
     private TextView userNameTextView;
     private TextView userDepartmentTextView;
+    private TextView StatusText;
     private DatabaseReference usersRef;
+    private TextView editProfileText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +50,10 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         userNameTextView = findViewById(R.id.userName);
         userDepartmentTextView = findViewById(R.id.userDepartment);
+        StatusText = findViewById(R.id.StatusText);
         recyclerViewPosts = findViewById(R.id.recyclerViewPosts);
         recyclerViewPosts.setLayoutManager(new GridLayoutManager(this, 2)); // Set grid layout with 3 columns
-
+        editProfileText= findViewById(R.id.editProfileText);
         postList = new ArrayList<>();
         postAdapter = new PostAdapter(postList, true);
         recyclerViewPosts.setAdapter(postAdapter);
@@ -81,10 +84,12 @@ public class ProfileActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     String fullname = snapshot.child("fullname").getValue(String.class);
                     String department = snapshot.child("department").getValue(String.class);
+                    String status = snapshot.child("status").getValue(String.class);
 
                     // Set these values to TextViews
                     if (fullname != null) userNameTextView.setText(fullname);
                     if (department != null) userDepartmentTextView.setText(department);
+                    if(status != null) StatusText.setText(status);
                 }
             }
 
@@ -95,6 +100,15 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         loadUserPosts();
+
+        editProfileText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent setupIntent =new Intent(ProfileActivity.this,SetupActivity.class);
+                setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(setupIntent);
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bn);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
