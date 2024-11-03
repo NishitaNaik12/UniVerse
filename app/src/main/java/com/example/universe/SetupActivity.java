@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -28,10 +29,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SetupActivity extends AppCompatActivity {
 
-    private EditText UserName, FullName, Country;
+    private EditText UserName, FullName, Country, Status;
     private Button saveButton;
     private CircleImageView profileImage;
-
+    private ImageView addapostIcon;
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
 
@@ -51,9 +52,12 @@ public class SetupActivity extends AppCompatActivity {
 
         UserName = (EditText) findViewById(R.id.setupUsername);
         FullName = (EditText) findViewById(R.id.setupFullName);
-        Country = (EditText) findViewById(R.id.setupCountry);
+        Country = (EditText) findViewById(R.id.setupDepartment);
         saveButton=(Button) findViewById(R.id.setupSaveButton);
+        Status = (EditText)findViewById(R.id.setupStatus);
         profileImage=(CircleImageView) findViewById(R.id.setupProfileImage);
+        addapostIcon = findViewById(R.id.add_post_icon);
+
 
         loadingBar=new ProgressDialog(this);
 
@@ -74,6 +78,7 @@ public class SetupActivity extends AppCompatActivity {
         String username = UserName.getText().toString();
         String fullname = FullName.getText().toString();
         String country = Country.getText().toString();
+        String status = Status.getText().toString();
 
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, "enter username", Toast.LENGTH_SHORT).show();
@@ -83,7 +88,10 @@ public class SetupActivity extends AppCompatActivity {
         }
         if (TextUtils.isEmpty(country)) {
             Toast.makeText(this, "Enter country", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if (TextUtils.isEmpty(status)) {
+            Toast.makeText(this, "Enter Status ", Toast.LENGTH_SHORT).show();
+        }else {
             loadingBar.setTitle("Saving Info");
             loadingBar.setMessage("wait");
             loadingBar.show();
@@ -94,7 +102,7 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("username", username);
             userMap.put("fullname", fullname);
             userMap.put("country", country);
-            userMap.put("status", "hey there im using universe");
+            userMap.put("status", status);
             userMap.put("gender", "none");
             userMap.put("dob", "none");
             userMap.put("relationshipStatus", "none");
