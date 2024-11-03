@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,6 +36,7 @@ public class SetupActivity extends AppCompatActivity {
     private ImageView addapostIcon;
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
+    private ImageView backButton;
 
     String currentUserID;
 
@@ -56,8 +58,19 @@ public class SetupActivity extends AppCompatActivity {
         saveButton=(Button) findViewById(R.id.setupSaveButton);
         Status = (EditText)findViewById(R.id.setupStatus);
         profileImage=(CircleImageView) findViewById(R.id.setupProfileImage);
+<<<<<<< HEAD
         addapostIcon = findViewById(R.id.add_post_icon);
 
+=======
+        backButton=(ImageView) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SetupActivity.this,SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+>>>>>>> f2717245437e98f566a7398bb03867ca36c8183c
 
         loadingBar=new ProgressDialog(this);
 
@@ -130,6 +143,7 @@ public class SetupActivity extends AppCompatActivity {
         finish();
 
     }
+
 
 
 }

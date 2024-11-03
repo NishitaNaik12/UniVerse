@@ -78,45 +78,70 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void CreateNewAccount() {
+        String email = UserEmail.getText().toString().trim();
+        String password = UserPassword.getText().toString().trim();
+        String confirmPassword = UserConfirnPassword.getText().toString().trim();
 
-        String email =UserEmail.getText().toString();
-        String password =UserPassword.getText().toString();
-        String confirmPassword =UserConfirnPassword.getText().toString();
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this, "enter Email", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
+            return;
         }
-        else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "enter password", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+            return;
         }
-        else if(TextUtils.isEmpty(confirmPassword)){
-            Toast.makeText(this, "re-enter password", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(confirmPassword)) {
+            Toast.makeText(this, "Re-enter Password", Toast.LENGTH_SHORT).show();
+            return;
         }
-        else if(!password.equals(confirmPassword)){
-            Toast.makeText(this, "password should match", Toast.LENGTH_SHORT).show();
-        }else{
-            loadingBar.setTitle("Creating....");
-            loadingBar.setMessage("wait");
-            loadingBar.show();
-            loadingBar.setCanceledOnTouchOutside(true);
-            mAuth.createUserWithEmailAndPassword(email,password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(SignupActivity.this, "acc created", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                                SendUserToSetupActivity();
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Passwords should match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Show loading bar
+        loadingBar.setTitle("Creating Account");
+        loadingBar.setMessage("Please wait...");
+        loadingBar.show();
+        loadingBar.setCanceledOnTouchOutside(true);
+
+        // Create the user with email and password
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                // Send verification email
+                                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(SignupActivity.this, "Verification email sent. Please verify your email.", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(SignupActivity.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             }
-                            else{
-                                String message= task.getException().getMessage();
-                                Toast.makeText(SignupActivity.this, "Error "+ message, Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                            }
+                            loadingBar.dismiss();
+                            SendUserToHomeActivity(); // Modify this to reflect your structure
+                        } else {
+                            String message = task.getException().getMessage();
+                            Toast.makeText(SignupActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
                         }
-                    });
-        }
-
+                    }
+                });
     }
+    private void SendUserToHomeActivity() {
+        Intent homeIntent = new Intent(SignupActivity.this, HomeActivity.class); // Replace HomeActivity with your actual home activity class
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(homeIntent);
+        finish(); // Optional: This will close the SignupActivity so the user can't navigate back to it
+    }
+
 
 
     private void SendUserToSetupActivity() {
@@ -126,4 +151,5 @@ public class SignupActivity extends AppCompatActivity {
         startActivity(setupIntent);
         finish();
     }
+
 }
