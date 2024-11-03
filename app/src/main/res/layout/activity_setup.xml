@@ -1,69 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
     android:background="@color/lightestgreen"
-    tools:context=".SetupActivity">
-
-
+    tools:context=".SetupActivity"
+    android:fitsSystemWindows="true">
 
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="59dp"
         android:layout_height="65dp"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_back" />
+        android:src="@drawable/ic_back"
+        android:contentDescription="Go back" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setupProfileImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/profile_icon" />
+        android:layout_marginTop="50dp"
+        android:src="@drawable/profile_icon"
+        android:contentDescription="Profile picture" />
 
     <EditText
         android:id="@+id/setupUsername"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="237dp"
+        android:layout_below="@id/setupProfileImage"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/alegreya_medium"
-        android:hint="userame:" />
+        android:hint="Username"
+        android:contentDescription="Enter username" />
 
     <EditText
         android:id="@+id/setupFullName"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="336dp"
+        android:layout_below="@id/setupUsername"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/alegreya_medium"
-        android:hint="Fullname:" />
+        android:hint="Full Name"
+        android:contentDescription="Enter full name" />
 
     <EditText
         android:id="@+id/setupCountry"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="434dp"
+        android:layout_below="@id/setupFullName"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/alegreya_medium"
-        android:hint="Department" />
+        android:hint="Department"
+        android:contentDescription="Enter department" />
 
     <Button
         android:id="@+id/setupSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/setupCountry"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="548dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/lesserdarkgreen"
         android:fontFamily="@font/alegreya_medium"
-        android:text="SAVE" />
-
+        android:text="SAVE"
+        android:contentDescription="Save details" />
 
 </RelativeLayout>

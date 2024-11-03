@@ -5,36 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:fitsSystemWindows="true">
 
    <include
        layout="@layout/app_bar"
-       android:id="@+id/main_app_bar">
+       android:id="@+id/main_app_bar"
+       app:layout_constraintTop_toTopOf="parent">
    </include>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="0dp"
         android:background="@color/lesserdarkgreen"
-
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/main_app_bar"
+
         tools:listitem="@layout/item_post" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+
         app:itemBackground="@color/lightgreen"
         app:itemIconTint="@drawable/selected_items"
         app:itemTextColor="@drawable/selected_items"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu"
-        tools:layout_editor_absoluteX="0dp" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

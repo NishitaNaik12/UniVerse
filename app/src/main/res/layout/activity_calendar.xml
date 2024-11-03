@@ -1,41 +1,49 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarActivity">
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".CalendarActivity"
+    android:fitsSystemWindows="true">
 
+    <!-- Top App Bar -->
     <include
         layout="@layout/app_bar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-            <CalendarView
-                android:id="@+id/simpleCalendarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:backgroundTint="@color/lightestgreen"
-                android:selectedWeekBackgroundColor="@color/slightlydarkergreen"
-                app:layout_constraintTop_toBottomOf="@id/main_app_bar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    <!-- Calendar View -->
+    <CalendarView
+        android:id="@+id/simpleCalendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="@color/lightestgreen"
+        android:selectedWeekBackgroundColor="@color/slightlydarkergreen"
+        android:contentDescription="Calendar view for selecting dates"
+        app:layout_constraintTop_toBottomOf="@id/main_app_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-            <Button
-                android:id="@+id/addEventButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/simpleCalendarView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/lesserdarkgreen"
-                android:text="Add Event"
-                app:layout_constraintTop_toBottomOf="@id/simpleCalendarView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+    <!-- Add Event Button -->
+    <Button
+        android:id="@+id/addEventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/lesserdarkgreen"
+        android:text="Add Event"
+        android:contentDescription="Button to add a new event"
+        app:layout_constraintTop_toBottomOf="@id/simpleCalendarView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
 
+    <!-- Scrollable Events Section -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,7 +52,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:contentDescription="Scrollable section displaying events">
 
         <LinearLayout
             android:id="@+id/eventsContainer"
@@ -52,6 +61,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,14 +69,17 @@
                 android:gravity="center_vertical"
                 android:layout_marginBottom="10dp"
                 android:padding="8dp"
-                android:background="@drawable/event_background">
+                android:background="@drawable/event_background"
+                android:contentDescription="Event item layout">
+
                 <ImageView
                     android:id="@+id/eventImageView"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="10dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_placeholder_image" />
+                    android:src="@drawable/ic_placeholder_image"
+                    android:contentDescription="Event image" />
 
                 <TextView
                     android:id="@+id/eventDisplay"
@@ -76,7 +89,8 @@
                     android:text="Events will be displayed here"
                     android:focusable="true"
                     android:enabled="true"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:contentDescription="Event details text" />
             </LinearLayout>
 
         </LinearLayout>
@@ -87,12 +101,13 @@
         android:id="@+id/bn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         app:itemBackground="@color/lightgreen"
         app:itemIconTint="@drawable/selected_items"
         app:itemTextColor="@drawable/selected_items"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu" />
+
+        app:menu="@menu/menu"
+        android:contentDescription="Bottom navigation menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
