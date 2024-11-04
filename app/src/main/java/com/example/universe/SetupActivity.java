@@ -60,6 +60,10 @@ public class SetupActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_setup);
 
+        //
+        Intent intent = getIntent();
+        handleIncomingIntent(intent);
+        //
         mAuth = FirebaseAuth.getInstance();
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
@@ -99,6 +103,24 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    //
+    private void handleIncomingIntent(Intent intent) {
+        if (intent != null && Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri data = intent.getData();
+            if (data != null) {
+                // Handle the verification logic here
+                // For example, you might want to check if the user is already logged in
+                // or take some action specific to the verification
+                Toast.makeText(this, "Welcome back! You clicked the verification link.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    //
     private void SaveAccountSetupInfo() {
         String username = UserName.getText().toString();
         String fullname = FullName.getText().toString();

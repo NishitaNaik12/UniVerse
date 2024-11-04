@@ -147,8 +147,9 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void saveEventDetails(String name, String date, String imageUrl) {
-        String eventId = databaseReference.push().getKey();
+        String eventId = databaseReference.push().getKey(); // Generate a unique ID
         Event event = new Event(name, date, imageUrl);
+        event.setId(eventId); // Set the ID on the event object
         databaseReference.child(eventId).setValue(event).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(this, "Event added successfully", Toast.LENGTH_SHORT).show();
@@ -158,6 +159,7 @@ public class CalendarActivity extends AppCompatActivity {
         });
     }
 
+
     private void retrieveEvents() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -166,8 +168,7 @@ public class CalendarActivity extends AppCompatActivity {
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
                     Event event = eventSnapshot.getValue(Event.class);
                     if (event != null) {
-                        // Set the ID to the event
-                        event.setId(eventSnapshot.getKey()); // Store the ID
+                        event.setId(eventSnapshot.getKey()); // Store the ID from Firebase
                         eventsList.add(event);
                     }
                 }
@@ -180,6 +181,7 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
     private void updateEventDisplay() {
