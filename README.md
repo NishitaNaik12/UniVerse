@@ -17,6 +17,8 @@
 </ul>
 <br>
 <h2>Screen Shot of the project</h2>
+br
+![image alt](https://github.com/NishitaNaik12/UniVerse/blob/main/Screenshot%202025-07-23%20195723.png?raw=true)
 
 
 
