@@ -15,6 +15,9 @@
   <li><b>Resource Sharing:</b> Easy access to educational materials shared by teachers.</li>
   <li><b>Community Building:</b> Foster connections based on shared interests for holistic development.</li>
 </ul>
+<br>
+<h2>Screen Shot of the project</h2>
+
 
 
 
